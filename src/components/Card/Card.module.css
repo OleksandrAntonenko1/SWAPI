@@ -1,0 +1,13 @@
+.customCard {
+  @apply card
+  card-compact
+  m-6
+  block
+  bg-base-100
+  shadow-md
+  hover:shadow-2xl
+  hover:scale-105
+  transition-shadow
+  break-inside-avoid
+  min-h-[670px]
+}

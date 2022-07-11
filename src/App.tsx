@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Router from "components/Router";
+import React from "react";
+import Header from "./components/Header";
+import { useEffect } from "react";
+// @ts-ignore
+import { themeChange } from "theme-change";
 
 function App() {
+  useEffect(() => {
+    themeChange(false);
+    // 👆 false parameter is required for react project
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="flex flex-col min-w-[320px] min-h-screen">
+      <Header />
+
+      <section className="container mx-auto flex-grow flex flex-col">
+        <Router />
+      </section>
+    </main>
   );
 }
 
