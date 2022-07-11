@@ -1,8 +1,6 @@
 import React, { useState, ChangeEventHandler, useTransition } from "react";
 import { useCharacterSearch } from "queries";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants";
-import { getIdFromCharacterUrl } from "utils";
+import CharactersList from "components/CharactersList";
 
 const CharacterSearch = () => {
   const [inputValue, setInputValue] = useState("");
@@ -31,19 +29,11 @@ const CharacterSearch = () => {
           tabIndex={0}
           className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 shadow-2xl"
         >
-          {results.length > 0 ? (
-            results.map(({ name, url }) => (
-              <li key={url}>
-                <Link to={`${ROUTES.CHARACTER}/${getIdFromCharacterUrl(url)}`}>
-                  {name}
-                </Link>
-              </li>
-            ))
+          {isLoading || isPending ? (
+            <li className="text-xl">Loading...</li>
           ) : (
-            <li className="text-xl">No results found</li>
+            <CharactersList characters={results} />
           )}
-
-          {isLoading || (isPending && <li className="text-xl">Loading...</li>)}
         </ul>
       </div>
     </>
